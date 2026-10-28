@@ -78,9 +78,9 @@ Formulas from *Neighbor-joining, step by step* class handout (Northeastern Unive
 `length_j = distance_matrix[row, column] - length_i`  
 **Gives branch lengths of i and j using a distance matrix(distance_matrix) and its row sums (TD_array)**
 
-`length_i = 0.5 * (distance_matrix[0, 1] + distance_matrix[0, 2] - distance_matrix[1, 2])`
-`length_j = distance_matrix[0, 1] - length_i`
-`length_k = distance_matrix[0, 2] - length_i`
+`length_i = 0.5 * (distance_matrix[0, 1] + distance_matrix[0, 2] - distance_matrix[1, 2])`  
+`length_j = distance_matrix[0, 1] - length_i`  
+`length_k = distance_matrix[0, 2] - length_i`  
 **Gives branch lengths of i, j, and k using a distance matrix(distance_matrix)**
 
 **Final Three Nodes**  
@@ -114,7 +114,7 @@ I found this project very challenging, especially understanding how all the step
 For this project the beginning was similar to the past project so that was fairly simple to write code wise. However, the second half of the project was more complicated and took more time to figure out computationally. I am not as confident in that aspect at this point but our group worked well to figure out a solution.
 
 # Generative AI Appendix
-As per the syllabus
+Claude (Sonnet 5.5) was used to make an example working neighbor_joining() function. We used this to view a completed tree, and get an idea of the target we were aiming for. Additionally, we compared Claude's tree to the output of our neighbor_joining() function. At this point our output was just a short string of two sets of joined nodes, and we had no idea if we were on the right tack. Through this comparison we gained some confidence in our result and then continued to troubleshoot the code. It was also reasuring to see some general similarities between our code and Claude's. 
 
-# Refrences
+# References
 Northeastern University (n.d.). *Neighbor-joining, step by step* [Class handout]. Canvas@NEU. https://canvas.northeastern.edu/
