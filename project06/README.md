@@ -1,5 +1,5 @@
 # Introduction
-In this project, we use distance-based phylogeny to explore the relationships among 20 HIV-1 reverse transcriptase protein sequences. We compare the sequences using Smith–Waterman local alignment and convert their similarities into a distance matrix. We then use neighbor joining to build a tree by repeatedly joining pairs based on their distances to each other and to the remaining nodes. Unlike UPGMA, neighbor joining does not assume that all lineages evolve at the same rate. The resulting unrooted tree shows relationships among the sequences without identifying a common ancestor or the direction of evolution.
+In this project, we use distance-based phylogeny to explore the relationships among 20 HIV-1 reverse transcriptase protein sequences. We compare the sequences using Smith–Waterman local alignment, from which we created a distance matrix. We then use neighbor joining to build a tree by repeatedly joining pairs based on their distances to each other and to the remaining nodes. Unlike UPGMA, neighbor joining does not assume that all lineages evolve at the same rate. The resulting unrooted tree shows relationships among the sequences without identifying a common ancestor or the direction of evolution.
 
 # Pseudocode
 ```
@@ -63,9 +63,12 @@ FUNCTION neighbor_joining(distance_matrix, labels):
 
 
 # Results
-## Formula and distance transformation 
+## Formulas and distance transformation 
+
 `distance = textdistance.smith_waterman.normalized_distance(sequence1, sequence2)`  
 **Gives (# differences)/(sequence length), this might not have worked well with sequences of varying lengths**
+
+Formulas from *Neighbor-joining, step by step* class handout (Northeastern University, n.d.)
 
 `distance_star = (nodes - 2) * distance_matrix[i,j] - TD_array[i] - TD_array[j]`  
 **Gives D\* using a distance matrix(distance_matrix) and it's row sums (TD_array)**
@@ -74,6 +77,11 @@ FUNCTION neighbor_joining(distance_matrix, labels):
 `length_i = 0.5 * (distance_matrix[row, column] + branch_split)`  
 `length_j = distance_matrix[row, column] - length_i`  
 **Gives branch lengths of i and j using a distance matrix(distance_matrix) and its row sums (TD_array)**
+
+`length_i = 0.5 * (distance_matrix[0, 1] + distance_matrix[0, 2] - distance_matrix[1, 2])`
+`length_j = distance_matrix[0, 1] - length_i`
+`length_k = distance_matrix[0, 2] - length_i`
+**Gives branch lengths of i, j, and k using a distance matrix(distance_matrix)**
 
 **Final Three Nodes**  
 The instructions in this notebook continued joining pairs until two active nodes remain, then connect them with a final branch. Our implementation follows the provided HTML tutorial instead, stopping when three active nodes remain and connecting them to a new central node. I believe that both approaches are valid ways to do neighbor joining. 
@@ -87,7 +95,7 @@ The neighbor-joining tree shown below contains all 20 HIV-1 reverse transcriptas
 We were able to produce a plausible tree. Additionally, despite scheduling conflicts, we were able to meet and make a lot of improvements to our code. We were then able to finalize the code to a working state over teams.  
 
 # Struggles
-The entire neighbor joining function was a struggle. Probably the biggest aspect of this was updating the distance matrix and labels correctly. For example, we were getting an index out or range error after the first iteration. We ended up realizing by printing the matrix that this was becasue we appended the new nodes values as a column but not a row, which made the matrix not a square. Similarly, we had an issue were, when deleting the joined neighbors from labels, the wrong labels were being removed. Also through a print statment we realized this was becasue after the first deletion the indexing of the list changed, making the second deletion occur on the wrong item. To fix this we stopped deleting labels by index and instead used remove() and their name.
+The entire neighbor joining function was a struggle. Probably the biggest aspect of this was updating the distance matrix and labels correctly. For example, we were getting an index out or range error after the first iteration. We realized by printing the matrix that this was becasue we appended the new nodes distance values as a column but not a row, which made the matrix not square. Similarly, we had an issue were, when deleting the joined neighbors from labels, the wrong labels were being removed. Also through a print statment we realized this was becasue after the first deletion the indexing of the list changed, making the second deletion occur on the wrong item. To fix this we stopped deleting labels by index and instead used remove() and their name.
 
 We also contemplated various distance calculation methods, but the textdistance method was choosen becuase of its simplicity. 
 
@@ -103,7 +111,10 @@ I found this project to be challenging, potentially the hardest one yet. Despite
 I found this project very challenging, especially understanding how all the steps in neighbor joining fit together. Working through the code one part at a time helped me understand what the D* matrix does and how the distances and branch lengths are updated after each join. Working through the code together with my group members helped me understand the concepts much more clearly. One thing that helped was testing the algorithm on a small matrix where we knew the expected result. I also learned about how Newick strings represent trees. Overall, I feel more comfortable with the algorithm now, although I would have liked to spend more time on this project. 
 
 **Abigail Ackor**
-
+For this project the beginning was similar to the past project so that was fairly simple to write code wise. However, the second half of the project was more complicated and took more time to figure out computationally. I am not as confident in that aspect at this point but our group worked well to figure out a solution.
 
 # Generative AI Appendix
 As per the syllabus
+
+# Refrences
+Northeastern University (n.d.). *Neighbor-joining, step by step* [Class handout]. Canvas@NEU. https://canvas.northeastern.edu/
