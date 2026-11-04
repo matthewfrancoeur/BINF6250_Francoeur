@@ -1,5 +1,5 @@
 # Introduction
-Description of the project
+In this project, we created a Burrows-Wheeler transformation (BWT) through two methods, first by cyclic rotations of a string and second by its suffix array. We then made use of the lexicographical ordering and last-first properties of the BWT to create pattern matching and compression/decompression algorithms. 
 
 # Pseudocode
 Put pseudocode in this box:
@@ -139,21 +139,23 @@ initialize an empty string encoded_text
         set count to digits covnerted to a number
         add count copies of symbol to decoded_text
     return decoded_text
-                
+
+# Dependencies
+python                
 
 # Successes
 - We were able to use the walkthrough on Canvas to understand the BWT, which helped us understand what each function was for and write the pseudocode for them
 - We were able to write pseudocode for every function before coding, which made writing the code much simpler
-- 
+- Function outputs match expected
 
 # Struggles
 - The hardest part was understanding update_rage and the indexing for the backward search. The formulas use `occur[a][lower - 1]` and `occur[a][upper] - 1` and I needed to work through an example row by row to see why the `-1` is inside the brackets in one case but outside in another
 - The second doctest for `cal_occur` appears to have a typo: it expects `'a': [0, 1, 1, 1, 1, 2, 3]` and `'n': [0, 0, 2, 2, 2, 2, 2]` but counting through each position gives `[1, 1, 1, 1, 1, 2, 3]` and `[0, 1, 2, 2, 2, 2, 2]`
-
+- We were only able to meet synchronously once. This made it so we are all in different stages of understanding at the end of this project. 
 
 # Personal Reflections
 ## Group Leader
-Group leader's reflection on the project
+Matthew (Jake): As expected, this project was algorithmically difficult. I spent a lot of time writing out the various steps of the project using the "banana$" example from the html (Sherman, 2025), and eventually started to get an ok understanding of what we were doing. That beign said, I still struggled with quite a few aspects conceptually. For example, why constructing a BWT from a suffix array works (not just that it does), and find_match(), update_range() functions. I do moslty get how to pattern match using pen and paper, but the code for this is still hard for me to understand.
 
 ## Other member - Katelyn
 I went into this project without any knowledge of the Burrows-Wheeler transform beyond what we discussed in class, but the walkthrough was extremely helpful in making sure I understood the algorithm step by step. I was able to use the pseudocode provided in the skeleton code as a starting point to write my own pseudocode for each function, and I relied on outside help much less than in previous projects, mostly to check my steps and catch mistakes. I felt much more confident writing pseudocode than I have before. Once the pseudocode was done, the code itself was relatively simple to write, since most lines translated directly from a step that I had already planned out. 
@@ -161,3 +163,6 @@ I was out of town this weekend, so I wasn't able to meet with the group on call.
 
 # Generative AI Appendix
 Katelyn: I used Claude Opus 5.5 throughout this project to help me use Git and GitHub. I also used it alongside the walkthrough provided to help me understand the BWT, suffix arrays, count and occurrence arrays, backward search, and run-length encoding and decoding. I wrote a first draft of the pseudocode for each function based on the pseudocode provided in the skeleton code and had Claude review each draft and point out mistakes or places where the pseudocode didn't match the skeleton. For `update_range` and `find_match` I had a harder time with starting the pseudocode, so Claude laid out the formulas and overall structure for me to reference. I wrote the code for each function from my pseudocode, and Claude reviewed it and explained and helped me correct errors. Claude cleaned up the wording of my pseudocode at the end and wrote some line comments for the function as well as drafted my Successes and Struggles and helped me edit my Personal Reflection for the README.
+
+# References
+1. Sherman, M. D. (2025). *Project 07: Burrows-Wheeler Transform* [Class handout]. Canvas@NEU. https://canvas.northeastern.edu/
